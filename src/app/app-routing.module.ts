@@ -7,6 +7,7 @@ const routes: Routes = [
     path: 'employees',
     component: EmployeesComponent
   },
+  
 ];
 
 @NgModule({

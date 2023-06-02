@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -28,7 +29,7 @@ import {MatTableModule} from '@angular/material/table';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,HttpClientModule,
     MatToolbarModule,MatButtonModule, MatIconModule, MatTableModule,
     ReactiveFormsModule,MatFormFieldModule,MatPaginatorModule,MatSortModule,
   ],

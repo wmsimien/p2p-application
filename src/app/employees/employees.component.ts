@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Employee } from './employee';
 
 @Component({
   selector: 'app-employees',
@@ -12,11 +13,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class EmployeesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'department', 'role', 'email', 'gl_acct_no'];
   dataSource!: MatTableDataSource<any>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private apiUrls: ApiUrlsService) {
     // Create 100 users
@@ -29,10 +30,11 @@ export class EmployeesComponent implements OnInit {
   getEmployeeList() {
     this.apiUrls.findAllEmployees().subscribe({
       next: (res) => {
-        console.log(res);
-    //     this.dataSource = new MatTableDataSource(res);
-    //     this.dataSource.sort = this.sort;
-    //     this.dataSource.paginator = this.paginator;
+        // console.log(res);
+        this.dataSource = new MatTableDataSource(res.data);
+        console.log(this.dataSource);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       error:  console.log,
     })
