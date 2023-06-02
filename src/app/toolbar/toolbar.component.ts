@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiUrlsService } from '../api-urls.service';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -12,11 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ToolbarComponent implements OnInit{
   displayOn: boolean = false;
-  urlPath: string = '';
 
 
-  constructor(private apiUrl: ApiUrlsService,
-    private route: ActivatedRoute,
+
+  constructor(
     private dialog: MatDialog,) {
   }
 
@@ -38,10 +36,6 @@ export class ToolbarComponent implements OnInit{
 
   ngOnInit(): void {
    
-    this.route.url.subscribe((res) =>
-    console.log(res[0].path)
-      // this.path = res[0].path
-    )
   }
 
 
