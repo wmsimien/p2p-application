@@ -1,3 +1,48 @@
 <div>
   {{title}}
 </div>
+
+<nav>
+  <ul>
+      <li>
+          <a routerLink="/">Home</a>
+      </li>
+      <li>
+          <a routerLink="/about">About</a>
+      </li>
+      <li>
+          <a routerLink="/links">Links</a>
+      </li>
+      <!-- <li>
+          Resume
+          <ul>
+              <li *ngFor="let job of jobs">
+                  <a routerLink="/resume/{{job.id}}">{{job.title}}</a>
+              </li>
+          </ul>
+      </li> -->
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <a routerLink="/employees" class="btn btn-info">List Employees</a>
+              <a routerLink="/api/employees/" class="btn btn-info">List Employees</a>
+                </li>
+            <li class="list-inline-item">
+              <a routerLink="/addemployee" class="btn btn-info">Add Employee</a>
+                </li>
+          </ul>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> -->
