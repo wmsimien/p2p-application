@@ -4,7 +4,6 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Employee } from './employee';
 
 @Component({
   selector: 'app-employees',
@@ -12,14 +11,16 @@ import { Employee } from './employee';
   styleUrls: ['./employees.component.css'],
 })
 export class EmployeesComponent implements OnInit {
+ 
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'department', 'role', 'email', 'gl_acct_no'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'department', 'role', 'email', 'gl_acct_no', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private apiUrls: ApiUrlsService) {
+  constructor(private apiUrls: ApiUrlsService,
+    ) {
     // Create 100 users
     // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -55,6 +56,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.toolbar.displayOn = false;
     this.getEmployeeList();
   }
 }
