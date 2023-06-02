@@ -18,20 +18,26 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,HttpClientModule,
     MatToolbarModule,MatButtonModule, MatIconModule, MatTableModule,
-    ReactiveFormsModule,MatFormFieldModule,MatPaginatorModule,MatSortModule,
+    ReactiveFormsModule,MatFormFieldModule,MatPaginatorModule,MatSortModule,MatDialogModule,
+    MatSelectModule, MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,10 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { MatDialog } from '@angular/material/dialog';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component'
+import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-employees',
@@ -11,7 +15,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./employees.component.css'],
 })
 export class EmployeesComponent implements OnInit {
- 
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'department', 'role', 'email', 'gl_acct_no', 'action'];
   dataSource!: MatTableDataSource<any>;
@@ -20,16 +23,24 @@ export class EmployeesComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private apiUrls: ApiUrlsService,
+    private dialog: MatDialog,
     ) {
-    // Create 100 users
-    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  }
 
-    // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(users);
+  openEmployeeForm() {
+    const empDialog = this.dialog.open(EmployeeFormComponent);
+    empDialog.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          return this.getEmployeeList();
+        }
+      },
+      error: console.log,
+    })
   }
 
   getEmployeeList() {
-    this.apiUrls.findAllEmployees().subscribe({
+    this.apiUrls.getAllEmployees().subscribe({
       next: (res) => {
         // console.log(res);
         this.dataSource = new MatTableDataSource(res.data);
@@ -56,7 +67,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.toolbar.displayOn = false;
     this.getEmployeeList();
+  
   }
 }

@@ -35,8 +35,12 @@ export class ApiUrlsService {
   }
 
 
-  public findAllEmployees(): Observable<any> {
+  public getAllEmployees(): Observable<any> {
     return this.http.get(this.empUrl);
 
+  }
+
+  public createEmployee(data: any): Observable<any> {
+    return this.http.post(this.empUrl, data);
   }
 }
