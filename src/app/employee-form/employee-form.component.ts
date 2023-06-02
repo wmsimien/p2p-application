@@ -32,9 +32,19 @@ export class EmployeeFormComponent implements OnInit {
 
 
   onFormSubmit() {
+    // console.log(this.employeeForm.valid);
     if (this.employeeForm.valid) {
       if (this.empData) {
-        console.log(this.empData);
+        // console.log(this.empData);
+        this.apiUrlsService.updateEmployeeById(this.empData.id, this.employeeForm.value).subscribe({
+          next: (val: any) => {
+            alert('Employee updated successfully.');  // implement snackbar here...
+            this.empDialog.close(true);
+          },
+          error: (err: any) => {
+            console.error(err);
+          }
+        })
       } else {
         // create new employee record
         this.apiUrlsService.createEmployee(this.employeeForm.value).subscribe({
@@ -47,7 +57,7 @@ export class EmployeeFormComponent implements OnInit {
           }
         })
       }
-  
+
     } 
   }
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 import { MatDialog } from '@angular/material/dialog';
+
 
 
 
@@ -13,9 +14,10 @@ export class ToolbarComponent implements OnInit{
   displayOn: boolean = false;
 
 
-
+  
   constructor(
-    private dialog: MatDialog,) {
+    private dialog: MatDialog,
+    ) {
   }
 
   openEmployeeForm() {
@@ -23,16 +25,15 @@ export class ToolbarComponent implements OnInit{
     empDialog.afterClosed().subscribe({
       next: (val) => {
         if (val) {
-          console.log(val);
-          // return this.getEmployeeList();
+          // console.log(val);    
         }
       },
       error: console.log,
     })
   }
 
-  
 
+  
 
   ngOnInit(): void {
    
