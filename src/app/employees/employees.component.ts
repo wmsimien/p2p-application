@@ -5,9 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormComponent } from '../employee-form/employee-form.component'
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-employees',
@@ -39,12 +37,25 @@ export class EmployeesComponent implements OnInit {
     })
   }
 
+  openEmployeeFormForEdit(data: any) {
+    const empDialog = this.dialog.open(EmployeeFormComponent, {
+      data,
+    });
+
+    empDialog.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          return this.getEmployeeList();
+        }
+      },
+      error: console.log,
+    })
+  }
+
   getEmployeeList() {
     this.apiUrls.getAllEmployees().subscribe({
       next: (res) => {
-        // console.log(res);
         this.dataSource = new MatTableDataSource(res.data);
-        console.log(this.dataSource);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
@@ -52,10 +63,6 @@ export class EmployeesComponent implements OnInit {
     })
   }
 
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
 
   applyFilter(event: Event) {
     // const filterValue = (event.target as HTMLInputElement).value;

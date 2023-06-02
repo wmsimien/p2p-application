@@ -15,7 +15,7 @@ export class ApiUrlsService {
 
   
   constructor(private http: HttpClient) {
-    this.empUrl = 'http://localhost:8080/api/employees/';
+    this.empUrl = `http://localhost:8080/api/employees/`;
   }
 
   /**
@@ -42,5 +42,9 @@ export class ApiUrlsService {
 
   public createEmployee(data: any): Observable<any> {
     return this.http.post(this.empUrl, data);
+  }
+
+  public updateEmployeeById(id: number, data: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/employees/${id}/`, data);
   }
 }
