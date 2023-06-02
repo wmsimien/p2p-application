@@ -1,0 +1,12 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .example-button-row {
+    margin-right: 50px;
+  }
+
+  .nav-btn {
+    margin-right: 30px;
+    padding-right: 10px;
+  }
