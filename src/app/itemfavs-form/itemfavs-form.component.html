@@ -1,1 +1,40 @@
-<p>itemfavs-form works!</p>
+<div mat-dialog-title>
+    <h1>Item Favorites Form</h1>
+</div>
+<form [formGroup]="itemFavForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Item Name</mat-label>
+                <input required matInput type="text" placeholder="Ex. Painting" 
+                formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Item Description</mat-label>
+                <input required matInput type="text" placeholder="Ex. Painting of Conference Rooms" 
+                formControlName="description">
+            </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Unit Price</mat-label>
+                <input required matInput type="unit" placeholder="525.25" formControlName="unitPrice">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Unit Of Measure</mat-label>
+                <mat-select formControlName="uom">
+                    <mat-option required *ngFor="let uom of uoms" [value]="uom">
+                        {{uom}}
+                    </mat-option>     
+                </mat-select>
+            </mat-form-field>            
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" mat-dialog-close="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+    </div>
+</form>
+
