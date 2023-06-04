@@ -34,7 +34,7 @@ export class ApiUrlsService {
     return this.urlSubject.asObservable();
   }
 
-
+  // Employees
   public getAllEmployees(): Observable<any> {
     return this.http.get(this.empUrl);
 
@@ -47,4 +47,10 @@ export class ApiUrlsService {
   public updateEmployeeById(id: number, data: any): Observable<any> {
     return this.http.put(`http://localhost:8080/api/employees/${id}/`, data);
   }
+
+  // Item Favs
+  public getAllFavItems(): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/items/`);
+  }
+
 }

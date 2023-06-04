@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
 // import { MaterialUiModule } from './material-ui/material-ui.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,6 +23,7 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { ItemfavsComponent } from './itemfavs/itemfavs.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     ToolbarComponent,
     EmployeesComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    ItemfavsComponent
   ],
   imports: [
     BrowserModule,
