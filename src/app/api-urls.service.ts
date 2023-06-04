@@ -92,4 +92,37 @@ export class ApiUrlsService {
     return this.http.delete(`http://localhost:8080/api/items/${id}/`);
   }
 
+  /**
+   * Metho calls API to obtain listing of all suppliers.
+   * @returns List of supplier records.
+   */
+  public getAllSuppliers(): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/suppliers/`);
+  }
+  /**
+   * Method calls API to update to create a new supplier record.
+   * @param data Supplier Data elements for update.
+   * @returns New supplier record.
+   */
+  public createSupplier(data: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/suppliers/`, data);
+  }
+  /**
+   * Method calls API to update a specific supplier with specified data elements.
+   * @param id Supplier id to update.
+   * @param data Supplier data elements to update.
+   * @returns Update supplier record.
+   */
+  public updateSupplierId(id: number, data: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/suppliers/${id}/`, data);
+  }
+  /**
+   * Method calls API to delete specified supplier record.
+   * @param id Supplier id to delete/remove.
+   * @returns Supplier record that was deleted.
+   */
+  public deleteSupplierId(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:8080/api/suppliers/${id}/`);
+  }
+
 }

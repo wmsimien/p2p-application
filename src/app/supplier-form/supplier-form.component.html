@@ -1,0 +1,77 @@
+<div mat-dialog-title>
+    <h1>Supplier Form</h1>
+</div>
+<form [formGroup]="supplierForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Supplier Name</mat-label>
+                <input required matInput type="text" placeholder="Ex. Tony's Paints" 
+                formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Name</mat-label>
+                <input required matInput type="text" placeholder="Ex. Tommy Bennet" 
+                formControlName="contactName">
+            </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Phone</mat-label>
+                <input required matInput type="phone" placeholder="222-333-4456" formControlName="contactPhone">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input required matInput type="text" placeholder="Ex. 1010 Merry Lane" 
+                formControlName="address">
+            </mat-form-field>            
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input required matInput type="text" placeholder="New Yor," formControlName="city">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input required matInput type="text" placeholder="New York" 
+                formControlName="state">
+            </mat-form-field>            
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Zip</mat-label>
+                <input required matInput type="text" placeholder="12345-4444" maxlength="9" formControlName="zip">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Supplier Phone No</mat-label>
+                <input required matInput type="tel" placeholder="Ex. 222-555-1212" 
+                formControlName="phoneNo">
+            </mat-form-field>            
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Email</mat-label>
+                <input required matInput type="email" placeholder="jimmy.johns@hotmail.com" formControlName="contactEmail">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option required *ngFor="let val of status" [value]="val">
+                        {{val}}
+                    </mat-option>     
+                </mat-select>
+            </mat-form-field>            
+        </div>
+
+    </div>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" mat-dialog-close="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+    </div>
+</form>
+

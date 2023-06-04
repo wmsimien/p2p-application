@@ -25,6 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ItemfavsComponent } from './itemfavs/itemfavs.component';
 import { ItemfavsFormComponent } from './itemfavs-form/itemfavs-form.component';
+import { SupplierComponent } from './supplier/supplier.component';
+import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ItemfavsFormComponent } from './itemfavs-form/itemfavs-form.component';
     EmployeesComponent,
     EmployeeFormComponent,
     ItemfavsComponent,
-    ItemfavsFormComponent
+    ItemfavsFormComponent,
+    SupplierComponent,
+    SupplierFormComponent
   ],
   imports: [
     BrowserModule,
