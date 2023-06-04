@@ -24,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ItemfavsComponent } from './itemfavs/itemfavs.component';
+import { ItemfavsFormComponent } from './itemfavs-form/itemfavs-form.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ItemfavsComponent } from './itemfavs/itemfavs.component';
     ToolbarComponent,
     EmployeesComponent,
     EmployeeFormComponent,
-    ItemfavsComponent
+    ItemfavsComponent,
+    ItemfavsFormComponent
   ],
   imports: [
     BrowserModule,

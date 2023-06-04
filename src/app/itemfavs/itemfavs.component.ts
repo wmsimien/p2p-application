@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 // import { CoreService } from '../core/core.service';
 import { ApiUrlsService } from '../api-urls.service';
+import { ItemfavsFormComponent } from '../itemfavs-form/itemfavs-form.component';
 
 @Component({
   selector: 'app-itemfavs',
@@ -21,7 +22,7 @@ export class ItemfavsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, 
+  constructor(private itemFavDialog: MatDialog, 
     private itemFavService: ApiUrlsService,
     // private coreService: CoreService
     ) {}
@@ -47,7 +48,7 @@ export class ItemfavsComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       error:  console.log,
-    })
+    });
   }
 
   applyFilter(event: Event) {
@@ -59,7 +60,7 @@ export class ItemfavsComponent implements OnInit {
     }
   }
 
-  deleteEmployee(id: number) {
+  deleteItemFav(id: number) {
     // this.empService.deleteEmployee(id).subscribe({
       // next: (res) => {
         // alert('Employee deleted!');
@@ -70,19 +71,31 @@ export class ItemfavsComponent implements OnInit {
     // })
   }
 
-  openEditEmpForm(data: any) {
-    // const dialogRef = this.dialog.open(EmpAddEditComponent, {
-      // data,
-    // });
+    openAddItemFavForm() {
+    const itemFavDialogRef = this.itemFavDialog.open(ItemfavsFormComponent);
+    itemFavDialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if(val) {
+         this.getItemList();
+        }
+      },
+      error: console.log,
+    });
+  }
 
-    // dialogRef.afterClosed().subscribe({
-    //   next: (val) => {
-    //     if(val) {
-    //       return this.getEmployeeList();
-    //     }
-    //   },
-    //   error: console.log,
-    // })
+  openItemFavsForm(data: any) {
+    const itemFavDialogRef = this.itemFavDialog.open(ItemfavsFormComponent, {
+      data,
+    });
+
+    itemFavDialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if(val) {
+          return this.getItemList();
+        }
+      },
+      error: console.log,
+    });
   
   }
 

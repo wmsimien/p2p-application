@@ -3,6 +3,7 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
+    <button (click)="openAddItemFavForm()" color="primary" class="add-btn" mat-raised-button>Add Fav Item</button>
   
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" matSort>
@@ -41,10 +42,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button color="primary" (click)="openEditEmpForm(row)">
+            <button mat-icon-button color="primary" (click)="openItemFavsForm(row)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="deleteEmployee(row.id)">
+            <button mat-icon-button color="warn" (click)="deleteItemFav(row.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

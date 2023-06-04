@@ -9,5 +9,11 @@
   }
 
   mat-form-field {
-    width: 100%;
+    width: 45%;
+  }
+
+  .add-btn{
+    margin-top: 10px;
+    float: right;
+    margin-right: 65px;
   }
