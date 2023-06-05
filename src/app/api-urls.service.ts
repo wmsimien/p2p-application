@@ -125,8 +125,8 @@ export class ApiUrlsService {
     return this.http.delete(`http://localhost:8080/api/suppliers/${id}/`);
   }
 
-  public getAllPurchaseOrders(): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/purchase-orders/`);
+  public getAllPurchaseReqs(): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/purchase-orders/reqs/`);
   }
 
 }

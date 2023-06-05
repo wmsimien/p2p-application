@@ -1,19 +1,23 @@
 .example-spacer {
     flex: 1 1 auto;
-  }
+}
 
-  .main-body {
-    padding-top: 20px;
-    margin: 0 auto;
-    max-width: 1248px;
-  }
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1248px;
+}
 
-  mat-form-field {
-    width: 45%;
-  }
+mat-form-field {
+  width: 45%;
+}
 
-  .add-btn{
-    margin-top: 10px;
-    float: right;
-    margin-right: 65px;
-  }
+.add-btn{
+  margin-top: 10px;
+  float: right;
+  margin-right: 65px;
+}
+
+.th-width {
+  width: 95px;
+}

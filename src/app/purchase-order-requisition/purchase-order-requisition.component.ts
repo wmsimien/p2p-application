@@ -13,8 +13,9 @@ import { PurchaseOrderRequisitionFormComponent } from '../purchase-order-requisi
 })
 export class PurchaseOrderRequisitionComponent {
 
-  displayedColumns: string[] = ['id', 'reqDate', 'itemId', 'itemName','qty', 'price', 'supplier', 
-  'shipTo','deliveryDate', 'reqNotesInternal','reqNotesExternal','createdBy', 'createdDate','action'];
+  items: any;
+  displayedColumns: string[] = ['id', 'reqDate', 'itemId', 'itemName','itemDescription','qty', 'price', 
+  'total', 'deliveryDate', 'createdDate','action'];
   // displayedColumns: string[] = ['reqNo', 'reqDate', 'itemId','item', 'itemDescription', 'qty', 'price', 'supplier', 
   // 'shipTo','deliveryDate', 'reqNotesInternal','reqNotesExternal','createdBy', 'createdDate', 'approvedBy', 'approvedDate','action'];
   dataSource!: MatTableDataSource<any>;
@@ -27,12 +28,14 @@ export class PurchaseOrderRequisitionComponent {
     ) {}
 
     /**
-     * Method calls service to obtain a list of all item favorites
+     * Method calls service to obtain a list of all purchase requisitions
      */
-  getPOList() {
-    this.poReqService.getAllPurchaseOrders().subscribe({
+  getPOReqsList() {
+    this.poReqService.getAllPurchaseReqs().subscribe({
       next: (res) => {
         console.log(res.data);
+        // console.log(res.data[0].items);
+        this.items = res.data[0].items;
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -49,21 +52,21 @@ export class PurchaseOrderRequisitionComponent {
     this.poReqService.deleteItemFavId(id).subscribe({
       next: (res) => {
         alert('Item Fav deleted!');
-        this.getPOList();
+        this.getPOReqsList();
       },
       error: console.log,
     })
   }
 
   /**
-   * Method opens item favorite form to edit a item favorite.
+   * Method opens purchase-order requisition form for edit.
    */
   openAddReqForm() {
     const poReqDialogRef = this.poReqDialog.open(PurchaseOrderRequisitionFormComponent);
     poReqDialogRef.afterClosed().subscribe({
       next: (val) => {
         if(val) {
-         this.getPOList();
+         this.getPOReqsList();
         }
       },
       error: console.log,
@@ -71,7 +74,7 @@ export class PurchaseOrderRequisitionComponent {
   }
 
   /**
-   * Method opens the item favorite form for adding a new item favorite.
+   * Method opens the purchase-order requisition form for updating.
    * @param data 
    */
   openReqForm(data: any) {
@@ -82,7 +85,7 @@ export class PurchaseOrderRequisitionComponent {
     poReqDialogRef.afterClosed().subscribe({
       next: (val) => {
         if(val) {
-          return this.getPOList();
+          return this.getPOReqsList();
         }
       },
       error: console.log,
@@ -92,6 +95,6 @@ export class PurchaseOrderRequisitionComponent {
 
 
   ngOnInit(): void {
-      this.getPOList();
+      this.getPOReqsList();
   }
 }
