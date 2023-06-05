@@ -1,0 +1,152 @@
+<div class="main-body">
+    <button (click)="openAddReqForm()" color="primary" class="add-btn" mat-raised-button>Create A Req</button>
+  
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+      
+        <!-- Req No Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Req No </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <!-- Req Date Column -->
+        <ng-container matColumnDef="reqDate">
+            <th mat-header-cell *matHeaderCellDef> Req Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.reqDate}} </td>
+         </ng-container>
+  
+
+        <!-- Item ID Column -->
+        <ng-container matColumnDef="itemId">
+            <th mat-header-cell *matHeaderCellDef> Item Id </th> 
+            <td mat-cell *matCellDef="let row"> 
+              <ng-container *ngFor="let r of row.items">
+                  <mat-cell>{{r.id}}</mat-cell>
+              </ng-container>
+            </td>
+        </ng-container>
+        
+
+        <!-- Item Name Column -->
+        <ng-container matColumnDef="itemName">
+            <th mat-header-cell *matHeaderCellDef> Item Name </th>
+            <td mat-cell *matCellDef="let row">
+              <ng-container *ngFor="let r of row.items">
+                <mat-cell>{{r.name}}</mat-cell>
+              </ng-container>
+            </td>
+        </ng-container>
+  
+  
+        <!-- Item Description Column -->
+        <ng-container matColumnDef="itemDescription">
+          <th mat-header-cell *matHeaderCellDef> Item Description </th>
+          <td mat-cell *matCellDef="let row"> 
+            <ng-container *ngFor="let r of row.items">
+              <mat-cell>{{r.description}}</mat-cell>
+            </ng-container>
+          </td>
+        </ng-container>
+
+         <!-- Qty Column -->
+        <ng-container matColumnDef="qty">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let row"> {{row.qty}}</td>
+        </ng-container>
+  
+        <!-- Unit Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let row"> 
+            <ng-container *ngFor="let r of row.items">
+              <mat-cell>{{r.unitPrice}}</mat-cell>
+            </ng-container>
+          </td>
+        </ng-container>
+
+         <!-- Calculated Total Column -->
+         <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef> Total </th>
+          <td mat-cell *matCellDef="let row"> 
+            <ng-container *ngFor="let r of row.items">
+              <mat-cell>{{row.qty * r.unitPrice}}</mat-cell>
+            </ng-container>
+          </td>
+        </ng-container>
+  
+        <!-- Supplier Column -->
+        <ng-container matColumnDef="supplier">
+          <th mat-header-cell *matHeaderCellDef> Supplier </th>
+          <td mat-cell *matCellDef="let row"> {{row.supplier}} </td>
+        </ng-container>
+
+        <!-- ShipTo Column -->
+        <ng-container matColumnDef="shipTo">
+            <th mat-header-cell *matHeaderCellDef> ShipTo </th>
+            <td mat-cell *matCellDef="let row"> {{row.shipTo}} </td>
+        </ng-container>
+
+        <!-- Delivery Date Column -->
+        <ng-container matColumnDef="deliveryDate">
+            <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.deliveryDate}} </td>
+        </ng-container>
+
+        <!-- Req Notes Internal Column -->
+        <ng-container matColumnDef="reqNotesInternal">
+            <th mat-header-cell *matHeaderCellDef> Internal Notes </th>
+            <td mat-cell *matCellDef="let row"> {{row.reqNotesInternal}} </td>
+        </ng-container>
+
+        <!-- Req Notes External Column -->
+        <ng-container matColumnDef="reqNotesExternal">
+            <th mat-header-cell *matHeaderCellDef> External Notes </th>
+            <td mat-cell *matCellDef="let row"> {{row.reqNotesExternal}} </td>
+        </ng-container>
+
+        <!-- Created By Column -->
+        <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef> Created By </th>
+            <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+        </ng-container>
+
+        <!-- Created Date Column -->
+        <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef> Created Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.createdDate}} </td>
+        </ng-container>
+
+        <!-- Approved By Column -->
+        <ng-container matColumnDef="approvedBy">
+            <th mat-header-cell *matHeaderCellDef> Approved By </th>
+            <td mat-cell *matCellDef="let row"> {{row.approvedBy}} </td>
+        </ng-container>
+
+        <!-- Approved Date Column -->
+        <ng-container matColumnDef="approvedDate">
+            <th mat-header-cell *matHeaderCellDef> Approved Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.approvedDate}} </td>
+        </ng-container>
+  
+        <!-- Action: Edit or Delete FavItem -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="openReqForm(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <!-- <button mat-icon-button color="warn" (click)="deleteItemFav(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button> -->
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </div>

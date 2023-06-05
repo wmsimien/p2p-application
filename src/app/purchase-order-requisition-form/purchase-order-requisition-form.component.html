@@ -1,0 +1,111 @@
+<div mat-dialog-title>
+    <h1>Purchase Requisition Form</h1>
+</div>
+<form [formGroup]="poReqsForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Req No</mat-label>
+                <input readonly matInput type="text" formControlName="id">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Req Date</mat-label>
+                <input required matInput type="date" formControlName="reqDate">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>ShipTo</mat-label>
+                <input required matInput type="text" formControlName="shipTo">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Delivery Date</mat-label>
+                <input required matInput type="date" formControlName="deliveryDate">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Supplier</mat-label>
+                <input required matInput type="text" formControlName="supplier">
+            </mat-form-field>
+        </div>
+        
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Item Id</mat-label>
+                <input required matInput type="text" formControlName="itemId">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Item Name</mat-label>
+                <input required matInput type="text" formControlName="itemName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Item Description</mat-label>
+                <input required matInput type="text" formControlName="itemDescription">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Qty</mat-label>
+                <input required matInput type="number" formControlName="qty">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input required matInput type="number" formControlName="price">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Unit Of Measure</mat-label>
+                <mat-select formControlName="uom">
+                    <mat-option required *ngFor="let uom of uoms" [value]="uom">
+                        {{uom}}
+                    </mat-option>     
+                </mat-select>
+            </mat-form-field>            
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Total</mat-label>
+                <input readonly matInput type="number" formControlName="total">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Req Notes Internal</mat-label>
+                <input matInput type="text" formControlName="reqNotesInternal">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Req Notes External</mat-label>
+                <input matInput type="text" formControlName="reqNotesExternal">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Created By</mat-label>
+                <input readonly matInput type="text" formControlName="createdBy">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Created Date</mat-label>
+                <input readonly matInput type="date" formControlName="createdDate">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Approved By</mat-label>
+                <input readonly matInput type="text" formControlName="approvedBy">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Approved Date</mat-label>
+                <input readonly matInput type="date" formControlName="approvedDate">
+            </mat-form-field>
+        </div>
+        <div class="row">
+        <button mat-icon-button color="primary">
+            <mat-icon>approval</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" mat-dialog-close="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+    </div>
+</form>
+
+
