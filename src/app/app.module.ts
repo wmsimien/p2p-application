@@ -27,6 +27,8 @@ import { ItemfavsComponent } from './itemfavs/itemfavs.component';
 import { ItemfavsFormComponent } from './itemfavs-form/itemfavs-form.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { SupplierFormComponent } from './supplier-form/supplier-form.component';
+import { PurchaseOrderRequisitionComponent } from './purchase-order-requisition/purchase-order-requisition.component';
+import { PurchaseOrderRequisitionFormComponent } from './purchase-order-requisition-form/purchase-order-requisition-form.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { SupplierFormComponent } from './supplier-form/supplier-form.component';
     ItemfavsComponent,
     ItemfavsFormComponent,
     SupplierComponent,
-    SupplierFormComponent
+    SupplierFormComponent,
+    PurchaseOrderRequisitionComponent,
+    PurchaseOrderRequisitionFormComponent
   ],
   imports: [
     BrowserModule,

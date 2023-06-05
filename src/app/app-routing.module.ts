@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeesComponent } from './employees/employees.component';
 import { ItemfavsComponent } from './itemfavs/itemfavs.component';
 import { SupplierComponent } from './supplier/supplier.component';
+import { PurchaseOrderRequisitionComponent } from './purchase-order-requisition/purchase-order-requisition.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: 'supplier',
     component: SupplierComponent
   },
+  {
+    path:'purchase-reqs',
+    component: PurchaseOrderRequisitionComponent
+  }
   
 ];
 
