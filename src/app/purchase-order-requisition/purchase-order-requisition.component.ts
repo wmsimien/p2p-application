@@ -36,7 +36,7 @@ export class PurchaseOrderRequisitionComponent {
         // console.log(res);
         console.log(res.data);
         console.log(res.data[0].poReqDetailList);
-        this.poreqDetail = res.data[0].poReqDetailList;
+        this.poreqDetail = res.data
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -79,6 +79,7 @@ export class PurchaseOrderRequisitionComponent {
    * @param data 
    */
   openReqForm(data: any) {
+    console.log(data);
     const poReqDialogRef = this.poReqDialog.open(PurchaseOrderRequisitionFormComponent, {
       data,
     });

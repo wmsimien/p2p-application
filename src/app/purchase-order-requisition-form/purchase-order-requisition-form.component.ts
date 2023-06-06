@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class PurchaseOrderRequisitionFormComponent {
 
   poReqsForm: FormGroup;
+  poreqDetail: any;
 
   
   uoms: string[] = [
@@ -32,7 +33,7 @@ export class PurchaseOrderRequisitionFormComponent {
       reqDate: '',
       shipTo: '',
       itemId: '',
-      itemName: '',
+      itemName: data.poReqDetailList[0].items,
       itemDescription: '',
       qty: '',
       price: '',
@@ -45,17 +46,27 @@ export class PurchaseOrderRequisitionFormComponent {
       createdBy: '',
       createdDate: '',
       approvedBy: '',
-      approvedDate: ''
+      approvedDate: '',
+      paymentTerms: '',
+      poReqDetailList: '',
+      testData:data.poReqDetailList[0].items[0].id
      });
   }
 
   /**
    * Method will perform update of an existing purchase requisition or create one.
+   * console.log(res.data);
+        console.log(res.data[0].poReqDetailList);
+        this.poreqDetail = res.data[0].poReqDetailList;
+        testData:data.poReqDetailList[0].items[0].id
    */
   onFormSubmit() {
+    console.log(this.poReqsForm);
     if (this.poReqsForm.valid) {
+      console.log(this.data);
       if (this.data) {
-        this.apiUrls.updateItemFavId(this.data.id, this.poReqsForm.value).subscribe({
+        console.log(this.data);
+        this.apiUrls.updatePOReqById(this.data.id, this.poReqsForm.value).subscribe({
           next: (val: any) => {
             alert('PO-Reqs update!');
             this.poReqsDialogRef.close(true);

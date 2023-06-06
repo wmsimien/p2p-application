@@ -133,4 +133,7 @@ export class ApiUrlsService {
     return this.http.get(`http://localhost:8080/api/po-req/`);
   }
 
+  public updatePOReqById(id: number, data: any): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/po-req/${id}/`);
+  }
 }
