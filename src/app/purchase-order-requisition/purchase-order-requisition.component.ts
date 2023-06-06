@@ -13,7 +13,7 @@ import { PurchaseOrderRequisitionFormComponent } from '../purchase-order-requisi
 })
 export class PurchaseOrderRequisitionComponent {
 
-  items: any;
+  poreqDetail: any;
   displayedColumns: string[] = ['id', 'reqDate', 'itemId', 'itemName','itemDescription','qty', 'price', 
   'total', 'deliveryDate', 'createdDate','action'];
   // displayedColumns: string[] = ['reqNo', 'reqDate', 'itemId','item', 'itemDescription', 'qty', 'price', 'supplier', 
@@ -31,11 +31,12 @@ export class PurchaseOrderRequisitionComponent {
      * Method calls service to obtain a list of all purchase requisitions
      */
   getPOReqsList() {
-    this.poReqService.getAllPurchaseReqs().subscribe({
+    this.poReqService.getAllPOReqs().subscribe({
       next: (res) => {
+        // console.log(res);
         console.log(res.data);
-        // console.log(res.data[0].items);
-        this.items = res.data[0].items;
+        console.log(res.data[0].poReqDetailList);
+        this.poreqDetail = res.data[0].poReqDetailList;
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

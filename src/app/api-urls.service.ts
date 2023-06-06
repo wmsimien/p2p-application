@@ -129,4 +129,8 @@ export class ApiUrlsService {
     return this.http.get(`http://localhost:8080/api/purchase-orders/reqs/`);
   }
 
+  public getAllPOReqs(): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/po-req/`);
+  }
+
 }
