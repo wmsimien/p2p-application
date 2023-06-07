@@ -1,5 +1,5 @@
 <div class="main-body">
-    <button (click)="openAddReqForm()" color="primary" class="add-btn" mat-raised-button>Create A Req</button>
+    <!-- <button (click)="openAddReqForm()" color="primary" class="add-btn" mat-raised-button>Create A Req</button> -->
   
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" matSort>
@@ -22,7 +22,8 @@
             <th mat-header-cell *matHeaderCellDef> Item Id </th> 
             <td mat-cell *matCellDef="let row">
               <ng-container *ngFor="let r of row.poReqDetailList">
-                <div *ngFor="let s of r.items"><mat-cell>{{s.id}}</mat-cell></div>
+                <div *ngFor="let s of r.items">
+                  <mat-cell>{{s.id}}</mat-cell></div>
               </ng-container>
             </td>
         </ng-container>
@@ -55,7 +56,6 @@
          <!-- Qty Column -->
         <ng-container matColumnDef="qty">
             <th mat-header-cell *matHeaderCellDef> Quantity </th>
-            <!-- <td mat-cell *matCellDef="let row"> {{row.qty}}</td> -->
             <td mat-cell *matCellDef="let row"> 
               <ng-container *ngFor="let r of row.poReqDetailList">
                 <mat-cell>{{r.qty}}</mat-cell>
@@ -79,11 +79,11 @@
         <ng-container matColumnDef="total">
           <th mat-header-cell *matHeaderCellDef> Total </th>
           <td mat-cell *matCellDef="let row"> 
-            <ng-container *ngFor="let r of row.poReqDetailList">
-              <div *ngFor="let s of r.items">
-                <mat-cell>{{r.qty * s.unitPrice}}</mat-cell>
-              </div>
-            </ng-container>
+             <ng-container *ngFor="let r of row.poReqDetailList">
+                <div *ngFor="let s of r.items">
+                  <mat-cell>{{s.unitPrice * r.qty}}</mat-cell>
+                </div>
+             </ng-container>
           </td>
         </ng-container>
   
