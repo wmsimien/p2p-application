@@ -10,7 +10,10 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Req Date</mat-label>
-                <input required matInput type="date" formControlName="reqDate">
+                <input  matInput [matDatepicker]="picker"  formControlName="reqDate">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Payment Terms</mat-label>
@@ -24,32 +27,30 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Delivery Date</mat-label>
-                <input required matInput type="date" formControlName="deliveryDate">
+                <input matInput type="date" formControlName="deliveryDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Supplier</mat-label>
                 <input required matInput type="text" formControlName="supplier">
             </mat-form-field>
         </div>
+        <!-- *ngFor="let r of data.poReqDetailList" -->
         
         <div class="row">
-            <mat-form-field appearance="outline" *ngFor="let r of data.poReqDetailList">
+          <mat-form-field appearance="outline"
+            
+            >
                 <mat-label>Item Id</mat-label>
                 <!-- <div *ngFor="let s of r.items">{{s.id}}</div> -->
-                <input *ngFor="let s of r.items" 
-                value={{s.id}}
+                <input 
+                name="itemId"
                 required matInput type="text" 
                 formControlName="itemId"
+                 >
                 
-                
-                > 
-                <!-- <div *ngFor="let s of r.items">{{s.id}}</div> -->
-           
             </mat-form-field>
-            <!-- <ng-container *ngFor="let r of data.poReqDetailList">
-                <div *ngFor="let s of r.items">{{s.id}}</div>
-              </ng-container> -->
-            <!-- </mat-form-field> -->
             <mat-form-field appearance="outline">
                 <mat-label>Item Name</mat-label>
                 <input required matInput type="text" formControlName="itemName">
@@ -99,6 +100,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Created Date</mat-label>
                 <input readonly matInput type="date" formControlName="createdDate">
+                <!-- <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle> -->
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Approved By</mat-label>

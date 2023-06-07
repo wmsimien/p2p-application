@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -45,8 +46,8 @@ import { PurchaseOrderRequisitionFormComponent } from './purchase-order-requisit
     PurchaseOrderRequisitionFormComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule,MatNativeDateModule,
+    AppRoutingModule,MatDatepickerModule,
     BrowserAnimationsModule,HttpClientModule,
     MatToolbarModule,MatButtonModule, MatIconModule, MatTableModule,
     ReactiveFormsModule,MatFormFieldModule,MatPaginatorModule,MatSortModule,MatDialogModule,

@@ -22,6 +22,7 @@ export class PurchaseOrderRequisitionFormComponent {
     'Skid(s)',
     'Gallon(s)'
   ];
+picker: any;
 
   constructor(private fb: FormBuilder, 
     private apiUrls: ApiUrlsService, 
@@ -55,15 +56,11 @@ export class PurchaseOrderRequisitionFormComponent {
 
   /**
    * Method will perform update of an existing purchase requisition or create one.
-   * console.log(res.data);
-        console.log(res.data[0].poReqDetailList);
-        this.poreqDetail = res.data[0].poReqDetailList;
-        testData:data.poReqDetailList[0].items[0].id
    */
   onFormSubmit() {
     console.log(this.poReqsForm);
     if (this.poReqsForm.valid) {
-      console.log(this.data);
+      // console.log(this.data);
       if (this.data) {
         console.log(this.data);
         this.apiUrls.updatePOReqById(this.data.id, this.poReqsForm.value).subscribe({
@@ -76,10 +73,17 @@ export class PurchaseOrderRequisitionFormComponent {
           }
         })
       } else {
-        this.apiUrls.createItemFavs(this.poReqsForm.value).subscribe({
+        this.apiUrls.createPOReqHeader(this.poReqsForm.value).subscribe({
           next: (val: any) => {
             alert('PO-Reqs added successfully.');
-            this.poReqsDialogRef.close(true);
+            this.apiUrls.createPOReqDetail(this.data.id, this.poReqsForm.value).subscribe({
+              next: (val: any) => {
+                this.poReqsDialogRef.close(true);
+              },
+              error: (err: any) => {
+                console.error(err);
+              }
+            });
           },
           error: (err: any) => {
             console.error(err);
