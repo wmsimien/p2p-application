@@ -129,4 +129,18 @@ export class ApiUrlsService {
     return this.http.get(`http://localhost:8080/api/purchase-orders/reqs/`);
   }
 
+  public getAllPOReqs(): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/po-req/`);
+  }
+
+  public updatePOReqById(id: number, data: any): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/po-req/${id}/`);
+  }
+
+  public createPOReqHeader(data: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/po-req/`, data);
+  }
+  public createPOReqDetail(id: number, data: any): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/po-req/${id}/`, data);
+  }
 }

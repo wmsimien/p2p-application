@@ -10,3 +10,10 @@ table {
   td, th {
     width: 15%;
   }
+
+
+  .add-btn{
+    margin-top: 10px;
+    float: right;
+    margin-right: 65px;
+  }

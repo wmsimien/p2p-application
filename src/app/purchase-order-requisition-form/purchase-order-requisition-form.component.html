@@ -1,5 +1,6 @@
 <div mat-dialog-title>
     <h1>Purchase Requisition Form</h1>
+    
 </div>
 <form [formGroup]="poReqsForm" (ngSubmit)="onFormSubmit()">
     <div mat-dialog-content class="content">
@@ -10,7 +11,13 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Req Date</mat-label>
-                <input required matInput type="date" formControlName="reqDate">
+                <input  matInput [matDatepicker]="picker"  formControlName="reqDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Payment Terms</mat-label>
+                <input readonly matInput type="text" formControlName="paymentTerms">
             </mat-form-field>
         </div>
         <div class="row">
@@ -20,34 +27,57 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Delivery Date</mat-label>
-                <input required matInput type="date" formControlName="deliveryDate">
+                <input matInput type="date" formControlName="deliveryDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Supplier</mat-label>
                 <input required matInput type="text" formControlName="supplier">
             </mat-form-field>
         </div>
-        
+      
         <div class="row">
-            <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline">
                 <mat-label>Item Id</mat-label>
-                <input required matInput type="text" formControlName="itemId">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <div *ngFor="let items of row.items">
+                        <input name="item" [(ngModel)]="items.id" matInput type="text" formControlName="itemId">
+                    </div>
+                </div>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Item Name</mat-label>
-                <input required matInput type="text" formControlName="itemName">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <div *ngFor="let items of row.items">
+                        <input name="name" [(ngModel)]="items.name" matInput type="text" formControlName="itemName">
+                    </div>
+                </div>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Item Description</mat-label>
-                <input required matInput type="text" formControlName="itemDescription">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <div *ngFor="let items of row.items">
+                        <input name="description" [(ngModel)]="items.description" 
+                        matInput type="text" 
+                        formControlName="itemDescription">
+                    </div>
+                </div>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Qty</mat-label>
-                <input required matInput type="number" formControlName="qty">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <input name="qty" [(ngModel)]="row.qty" matInput type="number" formControlName="qty">
+                </div>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Price</mat-label>
-                <input required matInput type="number" formControlName="price">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <div *ngFor="let items of row.items">
+                        <input name="unitPrice" [(ngModel)]="items.unitPrice"  matInput type="number" 
+                        formControlName="price">
+                    </div>
+                </div>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Unit Of Measure</mat-label>
@@ -62,6 +92,13 @@
             <mat-form-field appearance="outline">
                 <mat-label>Total</mat-label>
                 <input readonly matInput type="number" formControlName="total">
+                <div *ngFor="let row of data.poReqDetailList">
+                    <input name="qty" [(ngModel)]="row.qty" matInput type="number" formControlName="qty">     
+                    <div *ngFor="let items of row.items">
+                        <input name="unitPrice" [(ngModel)]="items.unitPrice"  matInput type="number" 
+                        formControlName="price"> {{items.unitPrice * row.qty}}
+                    </div>
+                </div>
             </mat-form-field>
         </div>
         <div class="row">
@@ -82,6 +119,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Created Date</mat-label>
                 <input readonly matInput type="date" formControlName="createdDate">
+               
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Approved By</mat-label>

@@ -13,11 +13,9 @@ import { PurchaseOrderRequisitionFormComponent } from '../purchase-order-requisi
 })
 export class PurchaseOrderRequisitionComponent {
 
-  items: any;
+  poreqDetail: any;
   displayedColumns: string[] = ['id', 'reqDate', 'itemId', 'itemName','itemDescription','qty', 'price', 
   'total', 'deliveryDate', 'createdDate','action'];
-  // displayedColumns: string[] = ['reqNo', 'reqDate', 'itemId','item', 'itemDescription', 'qty', 'price', 'supplier', 
-  // 'shipTo','deliveryDate', 'reqNotesInternal','reqNotesExternal','createdBy', 'createdDate', 'approvedBy', 'approvedDate','action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,11 +29,12 @@ export class PurchaseOrderRequisitionComponent {
      * Method calls service to obtain a list of all purchase requisitions
      */
   getPOReqsList() {
-    this.poReqService.getAllPurchaseReqs().subscribe({
+    this.poReqService.getAllPOReqs().subscribe({
       next: (res) => {
-        console.log(res.data);
-        // console.log(res.data[0].items);
-        this.items = res.data[0].items;
+        // console.log(res);
+        // console.log(res.data);
+        // console.log(res.data[0].poReqDetailList);
+        this.poreqDetail = res.data
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -44,19 +43,6 @@ export class PurchaseOrderRequisitionComponent {
     });
   }
 
-  /**
-   * Method calls a service to delete the current item favorite on the current row.
-   * @param id Item favorite id to delete
-   */
-  deleteItemFav(id: number) {
-    this.poReqService.deleteItemFavId(id).subscribe({
-      next: (res) => {
-        alert('Item Fav deleted!');
-        this.getPOReqsList();
-      },
-      error: console.log,
-    })
-  }
 
   /**
    * Method opens purchase-order requisition form for edit.
@@ -73,11 +59,12 @@ export class PurchaseOrderRequisitionComponent {
     });
   }
 
-  /**
+  /**  
    * Method opens the purchase-order requisition form for updating.
    * @param data 
    */
   openReqForm(data: any) {
+    console.log(data);
     const poReqDialogRef = this.poReqDialog.open(PurchaseOrderRequisitionFormComponent, {
       data,
     });

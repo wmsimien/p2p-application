@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ApiUrlsService } from '../api-urls.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -11,6 +11,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class PurchaseOrderRequisitionFormComponent {
 
   poReqsForm: FormGroup;
+  poreqDetail: any;
+  poReqDetailList: any;
 
   
   uoms: string[] = [
@@ -21,6 +23,7 @@ export class PurchaseOrderRequisitionFormComponent {
     'Skid(s)',
     'Gallon(s)'
   ];
+picker: any;
 
   constructor(private fb: FormBuilder, 
     private apiUrls: ApiUrlsService, 
@@ -45,8 +48,26 @@ export class PurchaseOrderRequisitionFormComponent {
       createdBy: '',
       createdDate: '',
       approvedBy: '',
-      approvedDate: ''
+      approvedDate: '',
+      paymentTerms: '',
+      poReqDetailList:'',
+     
      });
+
+  }
+  getItems() : FormArray {
+    const itemControl = this.poReqsForm.get('itemId') as FormArray;
+    return itemControl;
+  }
+
+  newItems() : FormGroup{
+    return this.fb.group({
+      itemId: '',
+      itemName: '',
+      itemDescription: '',
+      qty:'',
+      uom:''
+    })
   }
 
   /**
@@ -55,7 +76,9 @@ export class PurchaseOrderRequisitionFormComponent {
   onFormSubmit() {
     if (this.poReqsForm.valid) {
       if (this.data) {
-        this.apiUrls.updateItemFavId(this.data.id, this.poReqsForm.value).subscribe({
+        console.log(this.data);
+        console.log(this.poReqsForm.value);
+        this.apiUrls.updatePOReqById(this.data.id, this.poReqsForm.value).subscribe({
           next: (val: any) => {
             alert('PO-Reqs update!');
             this.poReqsDialogRef.close(true);
@@ -65,10 +88,19 @@ export class PurchaseOrderRequisitionFormComponent {
           }
         })
       } else {
-        this.apiUrls.createItemFavs(this.poReqsForm.value).subscribe({
+        this.apiUrls.createPOReqHeader(this.poReqsForm.value).subscribe({
           next: (val: any) => {
             alert('PO-Reqs added successfully.');
-            this.poReqsDialogRef.close(true);
+            console.log(this.data);
+            console.log(this.poReqsForm.value);
+            this.apiUrls.createPOReqDetail(this.data.id, this.poReqsForm.value).subscribe({
+              next: (val: any) => {
+                this.poReqsDialogRef.close(true);
+              },
+              error: (err: any) => {
+                console.error(err);
+              }
+            });
           },
           error: (err: any) => {
             console.error(err);
@@ -80,6 +112,20 @@ export class PurchaseOrderRequisitionFormComponent {
 
   ngOnInit(): void {
       this.poReqsForm.patchValue(this.data);
+      this.getItems();
+      const itemControl = this.poReqsForm.get('itemId') as FormArray;
+      
+      // this.poReqDetailList.forEach((element: any) => {
+      //   console.log(element);
+        
+      // });
+
+      // this.data.poReqDetailList.forEach(r => {
+      //   r.items.forEach(s => {
+      //     itemControl.push(this.fb.control(s.id));
+      //   });
+      // });
+
   }
   
 }
