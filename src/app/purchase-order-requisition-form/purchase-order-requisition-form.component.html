@@ -33,30 +33,23 @@
         </div>
         
         <div class="row">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" *ngFor="let r of data.poReqDetailList">
                 <mat-label>Item Id</mat-label>
-                <input required matInput type="text"  
-                formControlName="itemId">
+                <!-- <div *ngFor="let s of r.items">{{s.id}}</div> -->
+                <input *ngFor="let s of r.items" 
+                value={{s.id}}
+                required matInput type="text" 
+                formControlName="itemId"
+                
+                
+                > 
+                <!-- <div *ngFor="let s of r.items">{{s.id}}</div> -->
+           
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Test Data</mat-label>
-                <input required matInput type="text" formControlName="testData">
-                <div *ngFor="let s of data.poReqDetailList[0].items">
-                 
-                    <!-- <div *ngFor="let t of s">{{t[0].name}} -->
-                        <!-- <div *ngFor="let u of t"> -->
-                            <!-- <div *ngFor="let v of u">{{v.name}}</div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                </div>        
-                <!-- <td mat-cell *matCellDef="let row"> 
-                    <ng-container *ngFor="let r of poreqDetail">
-                      <div *ngFor="let s of r.items">
-                        <mat-cell>{{s.id}}</mat-cell>
-                      </div>
-                    </ng-container>
-                  </td> -->
-            </mat-form-field>
+            <!-- <ng-container *ngFor="let r of data.poReqDetailList">
+                <div *ngFor="let s of r.items">{{s.id}}</div>
+              </ng-container> -->
+            <!-- </mat-form-field> -->
             <mat-form-field appearance="outline">
                 <mat-label>Item Name</mat-label>
                 <input required matInput type="text" formControlName="itemName">

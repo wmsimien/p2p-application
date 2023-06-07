@@ -33,7 +33,7 @@ export class PurchaseOrderRequisitionFormComponent {
       reqDate: '',
       shipTo: '',
       itemId: '',
-      itemName: data.poReqDetailList[0].items,
+      itemName: '',
       itemDescription: '',
       qty: '',
       price: '',
@@ -48,9 +48,9 @@ export class PurchaseOrderRequisitionFormComponent {
       approvedBy: '',
       approvedDate: '',
       paymentTerms: '',
-      poReqDetailList: '',
-      testData:data.poReqDetailList[0].items[0].id
+     
      });
+
   }
 
   /**
