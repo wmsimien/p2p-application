@@ -80,13 +80,21 @@ picker: any;
         console.log(this.poReqsForm.value);
         this.apiUrls.updatePOReqById(this.data.id, this.poReqsForm.value).subscribe({
           next: (val: any) => {
-            alert('PO-Reqs update!');
-            this.poReqsDialogRef.close(true);
+            alert('PO-Reqs Header update!');
+            this.apiUrls.updatePOReqDetail(this.data.id, this.poReqsForm.value).subscribe({
+              next: (val: any) => {
+                console.log(val);
+                this.poReqsDialogRef.close(true);
+              },
+              error: (err: any) => {
+                console.error(err);
+              }
+            });
           },
           error: (err: any) => {
             console.error(err);
           }
-        })
+        });
       } else {
         this.apiUrls.createPOReqHeader(this.poReqsForm.value).subscribe({
           next: (val: any) => {
