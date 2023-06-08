@@ -6,12 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 
 
-
-// import { MaterialUiModule } from './material-ui/material-ui.module';
+// MAT Section  :  import { MaterialUiModule } from './material-ui/material-ui.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -30,6 +27,9 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { SupplierFormComponent } from './supplier-form/supplier-form.component';
 import { PurchaseOrderRequisitionComponent } from './purchase-order-requisition/purchase-order-requisition.component';
 import { PurchaseOrderRequisitionFormComponent } from './purchase-order-requisition-form/purchase-order-requisition-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -51,7 +51,7 @@ import { PurchaseOrderRequisitionFormComponent } from './purchase-order-requisit
     BrowserAnimationsModule,HttpClientModule,
     MatToolbarModule,MatButtonModule, MatIconModule, MatTableModule,
     ReactiveFormsModule,MatFormFieldModule,MatPaginatorModule,MatSortModule,MatDialogModule,
-    MatSelectModule, MatInputModule
+    MatSelectModule, MatInputModule, MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

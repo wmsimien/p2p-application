@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { ItemfavsFormComponent } from '../itemfavs-form/itemfavs-form.component';
+import { MessagingService } from '../messaging.service';
 
 @Component({
   selector: 'app-itemfavs',
@@ -21,6 +22,7 @@ export class ItemfavsComponent implements OnInit {
 
   constructor(private itemFavDialog: MatDialog, 
     private itemFavService: ApiUrlsService,
+    private messageService: MessagingService,
     ) {}
 
     /**
@@ -44,7 +46,7 @@ export class ItemfavsComponent implements OnInit {
   deleteItemFav(id: number) {
     this.itemFavService.deleteItemFavId(id).subscribe({
       next: (res) => {
-        alert('Item Fav deleted!');
+        this.messageService.openSnackBar('Item Fav deleted.');
         this.getItemList();
       },
       error: console.log,

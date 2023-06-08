@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiUrlsService } from '../api-urls.service';
 import { SupplierFormComponent } from '../supplier-form/supplier-form.component';
+import { MessagingService } from '../messaging.service';
 
 @Component({
   selector: 'app-supplier',
@@ -13,9 +14,7 @@ import { SupplierFormComponent } from '../supplier-form/supplier-form.component'
 })
 export class SupplierComponent implements OnInit {
 
-  displayedColumns: string[] = ['id','name','contactName','contactPhone',
-  // 'address','city','state','zip',
-  'contactEmail','status','phoneNo','action'];
+  displayedColumns: string[] = ['id','name','contactName','contactPhone','contactEmail','status','phoneNo','action'];
 
   dataSource!: MatTableDataSource<any>;
 
@@ -23,11 +22,12 @@ export class SupplierComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private supplierDialog: MatDialog, 
+    private messageService: MessagingService,
     private supplierService: ApiUrlsService,
     ) {}
 
     /**
-     * Method calls service to obtain a list of all item favorites
+     * Method calls service to obtain a list of all suppliers
      */
   getSupplierList() {
     this.supplierService.getAllSuppliers().subscribe({
@@ -41,13 +41,13 @@ export class SupplierComponent implements OnInit {
   }
 
   /**
-   * Method calls a service to delete the current item favorite on the current row.
-   * @param id Item favorite id to delete
+   * Method calls a service to delete the current supplier record on the current row.
+   * @param id Supplier Id to remove/delete
    */
   deleteSupplier(id: number) {
     this.supplierService.deleteSupplierId(id).subscribe({
       next: (res) => {
-        alert('Supplier deleted!');
+        this.messageService.openSnackBar('Supplier deleted!')
         this.getSupplierList();
       },
       error: console.log,
@@ -55,7 +55,7 @@ export class SupplierComponent implements OnInit {
   }
 
   /**
-   * Method opens item favorite form to edit a item favorite.
+   * Method opens supplier form for edit or creating a new supplier.
    */
   openAddSupplierForm() {
     const supplierDialogRef = this.supplierDialog.open(SupplierFormComponent);
@@ -70,14 +70,13 @@ export class SupplierComponent implements OnInit {
   }
 
   /**
-   * Method opens the item favorite form for adding a new item favorite.
+   * Method opens the supplier form for adding or edit a supplier record.
    * @param data 
    */
   openSupplierForm(data: any) {
     const supplierDialogRef = this.supplierDialog.open(SupplierFormComponent, {
       data,
     });
-
     supplierDialogRef.afterClosed().subscribe({
       next: (val) => {
         if(val) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,29 @@ export class ApiUrlsService {
   /**
    * Declare variables
    */
+  private poReqHeaderData: any = 
+  {
+    id:'',
+    reqDate: '',
+    deliveryDate: '',
+     glAcctNo: '',
+     status: "Open",
+    paymentTerms: "COD",
+     poNotes: '',
+    reqNotesInternal: '',
+    reqNotesExternal:'',
+     shipTo: '',
+     createdBy: '',
+    createdDate: '',
+    approvedBy: '',
+    approvedDate:'',
+    supplier:''
+  };
+  private poReqDetailData: any = {
+    items:'',
+  };
+  
+  
   private urlSubject = new Subject<any>();
 
   
@@ -124,22 +148,75 @@ export class ApiUrlsService {
   public deleteSupplierId(id: number): Observable<any> {
     return this.http.delete(`http://localhost:8080/api/suppliers/${id}/`);
   }
-
+  /**
+   * Method calls endpoint to obtain all pos generated from approved reqs
+   * @returns 
+   */
   public getAllPurchaseReqs(): Observable<any> {
     return this.http.get(`http://localhost:8080/api/purchase-orders/reqs/`);
   }
-
+/**
+ * Method calls endpoint to obtain all po reqs
+ * @returns 
+ */
   public getAllPOReqs(): Observable<any> {
     return this.http.get(`http://localhost:8080/api/po-req/`);
   }
 
+  /**
+   * Method calls endpoint to update poReqHeader changes.
+   * @param id PoReqHeader record to update.
+   * @param data POReqHeader data to update current record with.
+   * @returns Updated record.
+   */
   public updatePOReqById(id: number, data: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/po-req/${id}/`);
+    // set poReqHeader information
+    this.poReqHeaderData.id =  data.id;
+    this.poReqHeaderData.approvedBy = data.approvedBy;
+    this.poReqHeaderData.approvedDate = data.approvedDate;
+    this.poReqHeaderData.shipTo = data.shipTo;
+    this.poReqHeaderData.createdBy = data.createdBy;
+    this.poReqHeaderData.createdDate = data.createdDate;
+    this.poReqHeaderData.deliveryDate = data.deliveryDate;
+    this.poReqHeaderData.glAcctNo = data.glAcctNo;
+    this.poReqHeaderData.paymentTerms = data.paymentTerms;
+    this.poReqHeaderData.poNotes = data.poNotes;
+    this.poReqHeaderData.reqDate = data.reqDate;
+    this.poReqHeaderData.reqNotesExternal = data.reqNotesExternal;
+    this.poReqHeaderData.reqNotesInternal = data.reqNotesInternal;
+    this.poReqHeaderData.status = "Open";
+    this.poReqHeaderData.deliveryDate = data.deliveryDate;
+    this.poReqHeaderData.poNotes = data.poNotes;
+    this.poReqHeaderData.supplier = data.supplier;
+    // call endpoint for updating poReqHeader record
+    return this.http.put(`http://localhost:8080/api/po-req/${id}/`, this.poReqHeaderData
+    );
   }
-
+  /**
+   * Method calls endpoint to update POReqDetail record.
+   * @param id POReqHeader record to use for updating.
+   * @param data POReqDetail data for updating.
+   * @returns Update POReqHeader record.
+   */
+  public updatePOReqDetail(id: number, data: any) {
+    this.poReqDetailData.items = data.poReqDetailList[0].items;
+    return this.http.put(`http://localhost:8080/api/po-req-detail/${id}/`, this.poReqDetailData
+    );
+  }
+  /**
+   * Method calls endpoint to create POReqHeader record.
+   * @param data POReqHeader data to update with.
+   * @returns Updated POReqHeader record.
+   */
   public createPOReqHeader(data: any): Observable<any> {
     return this.http.post(`http://localhost:8080/api/po-req/`, data);
   }
+  /**
+   * Method calls endpoint to create POReqDetail record.
+   * @param id Assoicated POReqHeader value.
+   * @param data Data elements to update POReqDetail record with.
+   * @returns Updated record.
+   */
   public createPOReqDetail(id: number, data: any): Observable<any> {
     return this.http.put(`http://localhost:8080/api/po-req/${id}/`, data);
   }

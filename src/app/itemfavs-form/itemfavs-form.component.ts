@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiUrlsService } from '../api-urls.service';
+import { MessagingService } from '../messaging.service';
 
 @Component({
   selector: 'app-itemfavs-form',
@@ -22,7 +23,8 @@ export class ItemfavsFormComponent implements OnInit{
   ];
 
   constructor(private fb: FormBuilder, 
-    private apiUrls: ApiUrlsService, 
+      private apiUrls: ApiUrlsService, 
+      private messageService: MessagingService,
       private itemFavDialogRef: MatDialogRef<ItemfavsFormComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any, 
       ) {
@@ -42,7 +44,7 @@ export class ItemfavsFormComponent implements OnInit{
       if (this.data) {
         this.apiUrls.updateItemFavId(this.data.id, this.itemFavForm.value).subscribe({
           next: (val: any) => {
-            alert('Item Favorite update!');
+            this.messageService.openSnackBar('Item Favorite successfully.')
             this.itemFavDialogRef.close(true);
           },
           error: (err: any) => {
@@ -52,7 +54,7 @@ export class ItemfavsFormComponent implements OnInit{
       } else {
         this.apiUrls.createItemFavs(this.itemFavForm.value).subscribe({
           next: (val: any) => {
-            alert('Item Favorite added successfully.');
+            this.messageService.openSnackBar('Item Favorite added successfully.')
             this.itemFavDialogRef.close(true);
           },
           error: (err: any) => {
