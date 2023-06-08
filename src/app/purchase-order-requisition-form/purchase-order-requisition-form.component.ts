@@ -24,7 +24,7 @@ export class PurchaseOrderRequisitionFormComponent {
     'Skid(s)',
     'Gallon(s)'
   ];
-picker: any;
+// picker: any;
 
   constructor(private fb: FormBuilder, 
     private apiUrls: ApiUrlsService, 

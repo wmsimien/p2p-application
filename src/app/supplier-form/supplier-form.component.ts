@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiUrlsService } from '../api-urls.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MessagingService } from '../messaging.service';
 
 @Component({
   selector: 'app-supplier-form',
@@ -14,10 +15,9 @@ export class SupplierFormComponent implements OnInit {
 
   status: string[] = ['Active','Inactive'];
 
-  constructor(private fb: FormBuilder, 
-    private apiUrls: ApiUrlsService, 
-      private supplierDialogRef: MatDialogRef<SupplierFormComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any, 
+  constructor(private fb: FormBuilder, private apiUrls: ApiUrlsService, private messageService: MessagingService,
+    private supplierDialogRef: MatDialogRef<SupplierFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, 
       ) {
      this.supplierForm = this.fb.group({
       name: '',
@@ -31,7 +31,7 @@ export class SupplierFormComponent implements OnInit {
       contactEmail: '',
       paymentMethod: '',
       status: ''
-     });
+    });
   }
  
   /**
@@ -42,7 +42,7 @@ export class SupplierFormComponent implements OnInit {
       if (this.data) {
         this.apiUrls.updateSupplierId(this.data.id, this.supplierForm.value).subscribe({
           next: (val: any) => {
-            alert('Supplier update!');
+            this.messageService.openSnackBar('Supplier updated successfully.')
             this.supplierDialogRef.close(true);
           },
           error: (err: any) => {
@@ -52,7 +52,7 @@ export class SupplierFormComponent implements OnInit {
       } else {
         this.apiUrls.createSupplier(this.supplierForm.value).subscribe({
           next: (val: any) => {
-            alert('Supplier added successfully.');
+            this.messageService.openSnackBar('Supplier added successfully.')
             this.supplierDialogRef.close(true);
           },
           error: (err: any) => {

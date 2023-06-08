@@ -31,9 +31,6 @@ export class PurchaseOrderRequisitionComponent {
   getPOReqsList() {
     this.poReqService.getAllPOReqs().subscribe({
       next: (res) => {
-        // console.log(res);
-        // console.log(res.data);
-        // console.log(res.data[0].poReqDetailList);
         this.poreqDetail = res.data
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.sort = this.sort;

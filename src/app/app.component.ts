@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Procure2Pay - Mini Application';
+  title = 'Mini-Procure2Pay Application';
 }

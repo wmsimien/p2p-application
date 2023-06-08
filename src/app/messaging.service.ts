@@ -11,7 +11,8 @@ export class MessagingService {
   constructor(private snackBar: MatSnackBar) { }
 
   /**
-   * Create a service for displaying snack-bar notifications using MatSnackBar.  Message will be open/dislay for a second toward the top view.
+   * Create a service for displaying snack-bar notifications using MatSnackBar.  
+   * Message will be open/dislay for a second toward the top view.
    * @param message  Opens snackbar with provided message.
    * @param action   Action to perform with message.
    */

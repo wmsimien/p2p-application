@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 
@@ -7,19 +7,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit{
-
-
+export class ToolbarComponent {
   
-  constructor(
-    ) {
-  }
-
-  
-
-  ngOnInit(): void {
-   
-  }
+  constructor() {}
 
 
 }
