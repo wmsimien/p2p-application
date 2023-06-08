@@ -6,6 +6,12 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .main-body {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1248px;
+  }
   
   td, th {
     width: 15%;

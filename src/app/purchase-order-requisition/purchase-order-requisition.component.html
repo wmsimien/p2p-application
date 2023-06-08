@@ -2,6 +2,7 @@
     <!-- <button (click)="openAddReqForm()" color="primary" class="add-btn" mat-raised-button>Create A Req</button> -->
   
     <div class="table-container">
+      <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
       
         <!-- Req No Column -->
@@ -160,5 +161,6 @@
       </table>
   
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
     </div>
   </div>
