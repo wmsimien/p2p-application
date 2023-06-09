@@ -15,7 +15,7 @@ export class PurchaseOrderRequisitionComponent {
 
   poreqDetail: any;
   displayedColumns: string[] = ['id', 'reqDate', 'itemId', 'itemName','itemDescription','qty', 'price', 
-  'total', 'deliveryDate', 'createdDate','action'];
+  'total', 'deliveryDate', 'createdDate'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
