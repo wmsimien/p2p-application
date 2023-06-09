@@ -157,7 +157,7 @@ export class ApiUrlsService {
   }
 /**
  * Method calls endpoint to obtain all po reqs
- * @returns 
+ * @returns Listing of all po reqs records.
  */
   public getAllPOReqs(): Observable<any> {
     return this.http.get(`http://localhost:8080/api/po-req/`);

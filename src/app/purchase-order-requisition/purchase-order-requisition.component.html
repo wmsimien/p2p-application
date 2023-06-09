@@ -142,17 +142,17 @@
             <td mat-cell *matCellDef="let row"> {{row.approvedDate}} </td>
         </ng-container>
   
-        <!-- Action: Edit or Delete FavItem -->
+        <!-- Action: Edit or Delete FavItem  -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+         <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button color="primary" (click)="openReqForm(row)">
               <mat-icon>edit</mat-icon>
-            </button>
+            </button> 
             <!-- <button mat-icon-button color="warn" (click)="deleteItemFav(row.id)">
               <mat-icon>delete</mat-icon>
             </button> -->
-          </td>
+         </td>
         </ng-container>
         
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
