@@ -15,11 +15,11 @@ export class ItemfavsFormComponent implements OnInit{
 
   uoms: string[] = [
     'Each',
-    'Box(es)',
-    'Dozen(s)',
-    'Pound(s)',
-    'Skid(s)',
-    'Gallon(s)'
+    'Box',
+    'Dozen',
+    'Pound',
+    'Skid',
+    'Gallon'
   ];
 
   constructor(private fb: FormBuilder, 
