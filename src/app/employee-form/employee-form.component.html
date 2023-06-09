@@ -13,14 +13,16 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Last name</mat-label>
-                <input id="lastName" required name="lastName" matInput type="text" placeholder="Ex. Simien" formControlName="lastName">
+                <input id="lastName" required name="lastName" matInput type="text"
+                 placeholder="Ex. Simien" formControlName="lastName">
             </mat-form-field>
         </div>     
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Department</mat-label>
                     <mat-select formControlName="department">
-                        <mat-option id="department" required name="department" *ngFor="let dept of departments" [value]="dept"> 
+                        <mat-option id="department" 
+                        required name="department" *ngFor="let dept of departments" [value]="dept"> 
                             {{dept}}
                         </mat-option>     
                     </mat-select>
@@ -32,7 +34,7 @@
                         {{role}}
                     </mat-option>     
                 </mat-select>
-            </mat-form-field>>
+            </mat-form-field>
         </div> 
         <div class="row">
             <mat-form-field appearance="outline">
