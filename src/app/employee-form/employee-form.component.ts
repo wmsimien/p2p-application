@@ -14,8 +14,8 @@ export class EmployeeFormComponent implements OnInit {
    * Declare and initialize variables
    */
   employeeForm!: FormGroup;
-  roles: string[] = ['DOA', 'Regular'];
-  departments: string[] = ['Corporate Office', 'Sales', 'Customer Support', 'Facilities'];
+  roles: string[] = ['DOA', 'Buyer', 'Staff'];
+  departments: string[] = ['Corporate', 'Sales', 'Customer Support', 'Facilities', 'Procurement'];
 
 
   constructor( @Inject(MAT_DIALOG_DATA) public empData: any, private apiUrlsService: ApiUrlsService,
